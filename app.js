@@ -3,6 +3,15 @@ const express = require('express')
 const app = express()
 const port = 3000
 
+app.use((req, res, next) => {
+  const date = new Date().toLocaleString('zh-TW', {
+    timeZone: 'Asia/Taipei',
+    hour12: false
+  })
+  console.log(`${date.toLocaleString().replace(/\//g, '-')} | ${req.method} FROM ${req.originalUrl}`)
+  next()
+})
+
 app.get('/', (req, res) => {
   res.send('列出全部 Todo')
 })
