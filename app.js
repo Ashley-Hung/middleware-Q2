@@ -4,11 +4,19 @@ const app = express()
 const port = 3000
 
 app.use((req, res, next) => {
-  const date = new Date().toLocaleString('zh-TW', {
+  const reqTime = new Date()
+  const reqStr = reqTime.toLocaleString('zh-TW', {
     timeZone: 'Asia/Taipei',
     hour12: false
   })
-  console.log(`${date.toLocaleString().replace(/\//g, '-')} | ${req.method} FROM ${req.originalUrl}`)
+
+  res.on('finish', () => {
+    const resTime = new Date()
+
+    console.log(
+      `${reqStr.replace(/\//g, '-')} | ${req.method} FROM ${req.originalUrl} | total time: ${resTime - reqTime}ms`
+    )
+  })
   next()
 })
 
