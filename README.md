@@ -1,6 +1,6 @@
 # Middleware request -> response 需要的時間
 
-
+![demo image](https://github.com/Ashley-Hung/middleware-Q2/blob/master/Q2.png)
 
 
 
